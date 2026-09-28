@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmLink East Africa</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f5f7f5;
+      color: #17251a;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      height: 70px;
+      background: #123c24;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #8bd450;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 25px;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(120deg, #123c24, #246b3d);
+      color: white;
+      padding: 75px 6%;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 650px;
+      color: #e7f1e9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      padding: 13px 20px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background: #8bd450;
+      color: #123c24;
+    }
+
+    .btn-light {
+      background: white;
+      color: #123c24;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 20px;
+    }
+
+    .hero-stat {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.15);
+    }
+
+    /* GENERAL */
+    section {
+      padding: 70px 6%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #68736b;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.06);
+    }
+
+    .icon {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #68736b;
+      line-height: 1.6;
+    }
+
+    /* MARKETPLACE */
+    .marketplace {
+      background: #eef5ef;
+    }
+
+    .filters {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #d6ddd7;
+      border-radius: 8px;
+      padding: 12px;
+      outline: none;
+      background: white;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #4d9a61;
+    }
+
+    .produce-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,.06);
+    }
+
+    .produce-image {
+      height: 150px;
+      background: linear-gradient(135deg,#d7ebcf,#92c77e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 65px;
+    }
+
+    .produce-body {
+      padding: 20px;
+    }
+
+    .produce-body h3 {
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #28733e;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 12px 0;
+    }
+
+    .location {
+      color: #68736b;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .verified {
+      display: inline-block;
+      background: #e7f7e9;
+      color: #23743a;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* DASHBOARD */
+    .dashboard {
+      background: #fff;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .stat {
+      background: white;
+      border: 1px solid #e2e8e3;
+      border-radius: 15px;
+      padding: 22px;
+    }
+
+    .stat small {
+      color: #68736b;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 27px;
+      margin-top: 10px;
+    }
+
+    .dashboard-panel {
+      background: white;
+      border: 1px solid #e2e8e3;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 13px;
+      border-bottom: 1px solid #edf0ed;
+    }
+
+    th {
+      color: #68736b;
+      font-size: 13px;
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 550px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 18px;
+      padding: 30px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      border: none;
+      background: transparent;
+      font-size: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #102e1c;
+      color: white;
+      padding: 50px 6%;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer p,
+    footer li {
+      color: #b9c8bd;
+      line-height: 1.8;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #294a34;
+      color: #9eafa2;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #123c24;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      display: none;
+      z-index: 2000;
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .filters {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width: 600px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #123c24;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding: 55px 5%;
+      }
+
+      section {
+        padding: 50px 5%;
+      }
+
+      .cards,
+      .dashboard-grid,
+      .filters,
+      .form-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+  <div class="logo">Farm<span>Link</span></div>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#market">Marketplace</a></li>
+    <li><a href="#buyers">Buyers</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
+  </ul>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <div>
+    <h1>Connect Your Farm To The Right Market.</h1>
+
+    <p>
+      FarmLink helps farmers find buyers while helping businesses
+      source fresh agricultural produce from reliable suppliers.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="openModal('farmerModal')">
+        Sell Your Produce
+      </button>
+
+      <button class="btn btn-light" onclick="openModal('buyerModal')">
+        Find Produce
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <h3>Today's Marketplace</h3>
+
+    <div class="hero-stat">
+      <span>🥔 Potato buyers</span>
+      <strong>24</strong>
+    </div>
+
+    <div class="hero-stat">
+      <span>🍅 Tomato listings</span>
+      <strong>48</strong>
+    </div>
+
+    <div class="hero-stat">
+      <span>🌽 Maize requests</span>
+      <strong>17</strong>
+    </div>
+
+    <div class="hero-stat">
+      <span>👨‍🌾 Active farmers</span>
+      <strong>1,284</strong>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section>
+
+  <div class="section-title">
+    <h2>How FarmLink Works</h2>
+    <p>Simple for farmers. Simple for buyers.</p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">👨‍🌾</div>
+      <h3>1. List Your Produce</h3>
+      <p>
+        Tell buyers what you have, where it is located,
+        quantity available and when it will be ready.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🔎</div>
+      <h3>2. Find A Match</h3>
+      <p>
+        Buyers can search available produce while farmers
+        receive relevant purchase requests.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🤝</div>
+      <h3>3. Connect & Trade</h3>
+      <p>
+        Buyer and farmer discuss price, delivery and payment
+        arrangements directly.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MARKETPLACE -->
+<section class="marketplace" id="market">
+
+  <div class="section-title">
+    <h2>Fresh Produce Marketplace</h2>
+    <p>Discover produce currently listed by farmers.</p>
+  </div>
+
+  <div class="filters">
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search potatoes, tomatoes..."
+      oninput="filterProduce()"
+    >
+
+    <select id="cropFilter" onchange="filterProduce()">
+      <option value="">All crops</option>
+      <option value="Potatoes">Potatoes</option>
+      <option value="Tomatoes">Tomatoes</option>
+      <option value="Maize">Maize</option>
+      <option value="Onions">Onions</option>
+    </select>
+
+    <select id="locationFilter" onchange="filterProduce()">
+      <option value="">All locations</option>
+      <option value="Kiambu">Kiambu</option>
+      <option value="Nakuru">Nakuru</option>
+      <option value="Murang'a">Murang'a</option>
+      <option value="Nyeri">Nyeri</option>
+    </select>
+
+    <button class="btn btn-primary" onclick="openModal('farmerModal')">
+      + Add Produce
+    </button>
+
+  </div>
+
+  <div class="cards" id="produceContainer"></div>
+
+</section>
+
+
+<!-- BUYER REQUESTS -->
+<section id="buyers">
+
+  <div class="section-title">
+    <h2>Latest Buyer Requests</h2>
+    <p>Farmers can respond to current demand.</p>
+  </div>
+
+  <div class="cards" id="buyerRequests"></div>
+
+  <div style="text-align:center;margin-top:30px;">
+    <button class="btn btn-primary" onclick="openModal('buyerModal')">
+      + Post Buyer Request
+    </button>
+  </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+<section class="dashboard" id="dashboard">
+
+  <div class="section-title">
+    <h2>Platform Dashboard</h2>
+    <p>Example administrator overview.</p>
+  </div>
+
+  <div class="dashboard-grid">
+
+    <div class="stat">
+      <small>Registered Farmers</small>
+      <strong id="farmerCount">1,284</strong>
+    </div>
+
+    <div class="stat">
+      <small>Active Buyers</small>
+      <strong id="buyerCount">324</strong>
+    </div>
+
+    <div class="stat">
+      <small>Produce Listings</small>
+      <strong id="listingCount">486</strong>
+    </div>
+
+    <div class="stat">
+      <small>Buyer Requests</small>
+      <strong id="requestCount">93</strong>
+    </div>
+
+  </div>
+
+
+  <div class="dashboard-panel">
+
+    <div class="panel-header">
+      <h3>Recent Produce Listings</h3>
+
+      <button class="btn btn-primary"
+              onclick="openModal('farmerModal')">
+        Add Listing
+      </button>
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Produce</th>
+            <th>Farmer</th>
+            <th>Quantity</th>
+            <th>Location</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody id="listingTable"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <div class="dashboard-panel">
+
+    <div class="panel-header">
+      <h3>Buyer Requests</h3>
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody id="requestTable"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-grid">
+
+    <div>
+      <h2>FarmLink</h2>
+      <p>
+        A digital marketplace designed to connect agricultural
+        producers with buyers.
+      </p>
+    </div>
+
+    <div>
+      <h3>Platform</h3>
+      <ul>
+        <li>Marketplace</li>
+        <li>Buyer Requests</li>
+        <li>Farmer Dashboard</li>
+        <li>Business Accounts</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Support</h3>
+      <ul>
+        <li>Help Center</li>
+        <li>Contact</li>
+        <li>Terms</li>
+        <li>Privacy</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 FarmLink East Africa. Demo platform.
+  </div>
+
+</footer>
+
+
+<!-- FARMER MODAL -->
+<div class="modal" id="farmerModal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal('farmerModal')">×</button>
+
+    <h2 style="margin-bottom:20px;">List Your Produce</h2>
+
+    <form id="farmerForm">
+
+      <div class="form-group">
+        <label>Farmer Name</label>
+        <input id="farmerName" required>
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Produce</label>
+
+          <select id="produceName" required>
+            <option value="">Select</option>
+            <option>Potatoes</option>
+            <option>Tomatoes</option>
+            <option>Maize</option>
+            <option>Onions</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Quantity (kg)</label>
+          <input type="number" id="quantity" required>
+        </div>
+
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Location</label>
+          <select id="farmerLocation" required>
+            <option value="">Select</option>
+            <option>Kiambu</option>
+            <option>Nakuru</option>
+            <option>Murang'a</option>
+            <option>Nyeri</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Price per kg (KSh)</label>
+          <input type="number" id="price" required>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label>Availability</label>
+        <input type="date" id="availability" required>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;">
+        Publish Listing
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- BUYER MODAL -->
+<div class="modal" id="buyerModal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal('buyerModal')">×</button>
+
+    <h2 style="margin-bottom:20px;">Post Buyer Request</h2>
+
+    <form id="buyerForm">
+
+      <div class="form-group">
+        <label>Business / Buyer Name</label>
+        <input id="businessName" required>
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Product</label>
+
+          <select id="requestedProduct" required>
+            <option value="">Select</option>
+            <option>Potatoes</option>
+            <option>Tomatoes</option>
+            <option>Maize</option>
+            <option>Onions</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Quantity (kg)</label>
+          <input type="number" id="requestedQuantity" required>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label>Location</label>
+
+        <select id="buyerLocation" required>
+          <option value="">Select</option>
+          <option>Nairobi</option>
+          <option>Kiambu</option>
+          <option>Nakuru</option>
+          <option>Murang'a</option>
+          <option>Nyeri</option>
+        </select>
+
+      </div>
+
+      <div class="form-group">
+        <label>Required Date</label>
+        <input type="date" id="requiredDate" required>
+      </div>
+
+      <div class="form-group">
+        <label>Additional Information</label>
+        <textarea id="buyerDescription" rows="4"></textarea>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;">
+        Publish Request
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+  /* =========================
+     INITIAL DATA
+  ========================== */
+
+  let produceData = JSON.parse(
+    localStorage.getItem("farmlinkProduce")
+  ) || [
+
+    {
+      farmer: "John Mwangi",
+      crop: "Potatoes",
+      quantity: 500,
+      location: "Kiambu",
+      price: 65,
+      date: "2026-10-04",
+      verified: true
+    },
+
+    {
+      farmer: "Mary Wanjiku",
+      crop: "Tomatoes",
+      quantity: 300,
+      location: "Nakuru",
+      price: 80,
+      date: "2026-10-06",
+      verified: true
+    },
+
+    {
+      farmer: "Peter Kamau",
+      crop: "Maize",
+      quantity: 1000,
+      location: "Murang'a",
+      price: 55,
+      date: "2026-10-08",
+      verified: false
+    },
+
+    {
+      farmer: "Jane Njeri",
+      crop: "Onions",
+      quantity: 700,
+      location: "Nyeri",
+      price: 90,
+      date: "2026-10-07",
+      verified: true
+    }
+
+  ];
+
+
+  let buyerData = JSON.parse(
+    localStorage.getItem("farmlinkBuyers")
+  ) || [
+
+    {
+      business: "Nairobi Fresh Foods",
+      product: "Potatoes",
+      quantity: 2000,
+      location: "Nairobi",
+      date: "2026-10-05"
+    },
+
+    {
+      business: "City Restaurant",
+      product: "Tomatoes",
+      quantity: 800,
+      location: "Nairobi",
+      date: "2026-10-06"
+    },
+
+    {
+      business: "Fresh Produce Wholesalers",
+      product: "Onions",
+      quantity: 1500,
+      location: "Nakuru",
+      date: "2026-10-08"
+    }
+
+  ];
+
+
+  /* =========================
+     SAVE DATA
+  ========================== */
+
+  function saveData() {
+
+    localStorage.setItem(
+      "farmlinkProduce",
+      JSON.stringify(produceData)
+    );
+
+    localStorage.setItem(
+      "farmlinkBuyers",
+      JSON.stringify(buyerData)
+    );
+
+  }
+
+
+  /* =========================
+     RENDER PRODUCE
+  ========================== */
+
+  function re
